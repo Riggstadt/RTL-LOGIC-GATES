@@ -9,10 +9,9 @@ The logic gate circuits must:
 1.  Be powered by a 5V (±0.1V) supply voltage from a regular USB port
 2.  Occupy a limited PCB footprint
 3.  Insure a big enough current to drive at least one LED as a state indicator (H/L)
-4.  The transistors used must provide a big enough current gain at small base currents 
 
 ### Parts used overall
-I've decided to use the 2N3904 transistor as its gain of roughly 150 at collector currents between 5 to 10 mA is very appropriate. The resistors used are all power reated for a maximum dissipation of 250mW, which is unlikely to be reached in these circuits. The circuits were assembled and build on strip-board (veroboard).
+I've decided to use the 2N3904 transistor as its gain of roughly 150 at collector currents between 5 to 10 mA is very appropriate. The resistors used are all power rated for a maximum dissipation of 250mW, which is unlikely to be reached in these circuits. The circuits were assembled and build on strip-board (veroboard).
 
 ### The Inverter
 #### Theoretical Aspects
@@ -37,3 +36,18 @@ The inverters work well enough that they can be integrated into multigate circui
 
 [Schema cu valori a inversorului si simulare]
 [masuratori pe circuit]
+
+### The OR Gate
+[Versiunea mea (cu poveste)  vs versiunea mainstream]
+https://www.youtube.com/watch?v=i5K1sYbVUmo&ab_channel=electronzapdotcom
+Note: la versiunea mea tranzistorii sunt in regim inverse activ si curentul curge de la emitor la colector not best desig
+### The NAND Gate
+[adaug momentan doar imagini stil galerie cu disclaimer de completare]
+
+### SR Latch 
+[adaug momentan doar imagini stil galerie cu disclaimer de completare]
+
+###Pe viitor (Poarta XOR)
+http://sullystationtechnologies.com/npnxorgate.html
+https://electronics-fun.com/logic-gates/#XOR_gate
+https://math.stackexchange.com/questions/1523748/simplifying-boolean-algebra-expression-that-contains-xor
