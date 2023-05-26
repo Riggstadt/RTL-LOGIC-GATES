@@ -2,42 +2,38 @@
 Resistor-Transistor Logic based Logic Gates
 
 ### Description
-The purpose of this project is building logic gates out of readily available components without using any ICs. The Logic Gates are built out of discrete components and mirror the structure and behaviour of classical Resistor Transistor Gates.
+This repo covers some of the logic gates I designed and built out of discrete bipolar transistor
 
 ### Design constraints
 The logic gate circuits must:
-1.  Be powered by a 5V supply voltage from a USB port
-2.  Interface with a Arduino Uno for input signal at logic gate ports
-3.  Occupy a limited PCB footprint 
+1.  Be powered by a 5V (±0.1V) supply voltage from a regular USB port
+2.  Occupy a limited PCB footprint
+3.  Insure a big enough current to drive at least one LED as a state indicator (H/L)
+4.  The transistors used must provide a big enough current gain at small base currents 
 
-### Timeline of the Project and Design Stages
+### Parts used overall
+I've decided to use the 2N3904 transistor as its gain of roughly 150 at collector currents between 5 to 10 mA is very appropriate. The resistors used are all power reated for a maximum dissipation of 250mW, which is unlikely to be reached in these circuits. The circuits were assembled and build on strip-board (veroboard).
 
-1.  Researching the basic operating principles of RTL Logic
-2.  Solving by hand a discrete NPN transistor switch problem 
+### The Inverter
+#### Theoretical Aspects
+The inverter is a simple circuit, only one transistor being needed for its construction.
+How it works:
+* If we provide a High signal at the base, the transistor will enter its saturation region and drop a small amount of voltage between collector and ground, thus ensuring that the output is a logical Low.
+* If we instead provide a Low signal at the base, the transistor will enter its cutoff region and will no longer conduct electricity, thus ensuring the output voltage will be about 5V.
+There are a few characteristics that are of great interest to us, such as VCE(sat) and current gain at saturation.
 
-3.  Basic computer aided circuit analysis for RTL Logic Gates
-    * Building and analysing the circuit of a NPN transistor **switch** in ORCAD Capture Lite
-    * Building and analysing the circuit of a NPN transistor **inverter gate** in ORCAD Capture Lite
-    * Building and analysing the circuit of a NPN **NAND gate** in ORCAD Capture Lite
-    * Building and analysing the circuit of a **1:2 DMUX** in Vivado
-    
-4.  Basic prototyping of the different circuits on stripboard
-    * Assembling switch (succesful)
-    * Assembling test configuration for NAND gate (succesful)
-    * Assembling reduced footprint configuration for NAND gate (succesful)
-    * Assembling complete configuration of NAND gate with input and output 3mm LED indicators (failure due to imperfect contacts)
-    * Rehash of reduced footprint configuration of NAND and Inverter gate (succesful)
-    * Rehash of complete NAND gate configuration on a perf board (succesful)
-    * Final perf board prototype of 1:2 DMUX 
+We will design a proof of concept circuit using the test values provided by the datasheet: VCE(sat,max) = 0.2V, Ib = 1mA, Ic = 10mA.
+[Cum scot valorile rezistentelor]
+[schema cu circuitul si valorile simulate pentru diversi parametri]
+[emulare irl cu 4.35 = 2k + 2k + 330 si 480 = 470]
 
 
-### RTL Basics
-[schematic of RTL gates side by side with symbol of gate and truth table][done in powerpoint]
-[how RTL switches work][done in latex, schematic done in powerpoint]
 
-### Final Circuits in PSpice
-[circuit in PSpice vs circuit on perf board with overlay on both of them with voltages]
 
-### Showcase of circuits 
-[simple inverter education circuit with current shunts and values]
-[NAND gate and 1:2 DMUX working as intended with truth table overlay]
+#### Practical circuit and measurements
+The first iterations of the inverter circuits I built were more ad-hoc and clunky. The simplest way of checking the proper functioning of the circuit is connecting a LED in series with a current limiting resistor at the output of the gate. I targeted various nominal parameters for the leds I used. It turned out the LEDs, although all of the same colour, had significantly different forward voltages (10mA @ 1.81V or 20mA @ 2.01V). The availability of the parts also dictated the construction of the gates. Having used a significant number of my low value resistor in the prototype stage of this project and of other projects I was left with mainly 270ohm / 470ohm resistors.
+After taking a quick glance at the simulations in falstad and LTspice and confirming the appropriate values I soldered the pieces on the strip-board.
+The inverters work well enough that they can be integrated into multigate circuits, such as an SR latch.
+
+[Schema cu valori a inversorului si simulare]
+[masuratori pe circuit]
