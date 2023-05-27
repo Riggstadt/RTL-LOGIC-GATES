@@ -22,9 +22,17 @@ How it works:
 There are a few characteristics that are of great interest to us, such as VCE(sat) and current gain at saturation.
 
 We will design a proof of concept circuit using the test values provided by the datasheet: VCE(sat,max) = 0.2V, Ib = 1mA, Ic = 10mA.
+
+
 [Cum scot valorile rezistentelor]
-[schema cu circuitul si valorile simulate pentru diversi parametri]
-[emulare irl cu 4.35 = 2k + 2k + 330 si 480 = 470]
+$$V_{CC} = R_{B}\cdot I_{B}+V_{BE(sat)}\Longrightarrow R_{B}=\frac{5-0.65}{0.001}=4.35K\Omega$$
+$$V_{CC} = R_{C}\cdot I_{C}+V_{CE(sat)}\Longrightarrow \frac{5-0.2}{0.01}=480\Omega$$
+Note that $V_{CE(sat)}$ is the worst case value, we can have even lower saturation voltages whilst under 10mA collector current.
+
+![TESTCASE_INV_page-0001](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/03417f3d-e9bc-4cb9-a8d5-545ea77a8cde)
+![TESTCASE_INV_page-0001](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/0badeb5a-ee04-46f4-9467-623e68e4ad8c)
+
+
 
 
 
@@ -34,13 +42,21 @@ The first iterations of the inverter circuits I built were more ad-hoc and clunk
 After taking a quick glance at the simulations in falstad and LTspice and confirming the appropriate values I soldered the pieces on the strip-board.
 The inverters work well enough that they can be integrated into multigate circuits, such as an SR latch.
 
-[Schema cu valori a inversorului si simulare]
-[masuratori pe circuit]
+| High at input  | . | Low at input | . |
+| ------------- |---| ------------- |---|
+| $V_{CE}\\;[V]$ |0.0389|$V_{CE}[V]$|3.714|
+| $V_{BE}\\;[V]$ |0.823|$V_{BE}[V]$|0.045|
+| $I_{C}\\;[A]$ |4.82|$I_{C}[A]$|1.36|
+| $V_{out}\\;[V]$ |0.043|$V_{out}[V]$|3.7|
+| $I_{D}\\;[A]$ |0|$I_{D}[A]$|1.655|
+| $I_{B}\\;[A]$ |4.26|$I_{B}[A]$|0|
 
 ### The OR Gate
 [Versiunea mea (cu poveste)  vs versiunea mainstream]
 https://www.youtube.com/watch?v=i5K1sYbVUmo&ab_channel=electronzapdotcom
-Note: la versiunea mea tranzistorii sunt in regim inverse activ si curentul curge de la emitor la colector not best desig
+I was trying to build a XOR gate but couldn't find many proper schematics and explanations. I chose to use the circuit presented in this hackaday post: https://cdn.hackaday.io/images/original/532881532876841662.gif. No matter how hard I tried I couldn't convince the circuit to obbey the truth table of the xor functin, but discovered that with a few tweaks here and there you could make an OR gate. The gates I built worked well enough and were integrated in bigger multigate cirucit without significant losses or errors.
+[imagine cu schema si cand functioneaza care cum].
+The main problem with my implementation, barring the obvious absence of a ground without connecting the state LED, is that the transistors don't really work as they're supposed to. $V_{E}$ will be slightly bigger than $V_{C}$ and the current will flow from the emitter to the collector. V_{E} < V_{B} and V_{C} < V_{B} so the transistor should be considered saturated. There shouldn't be any problems with this approach as all the possible voltages and currents are far too low to inflict any damage upon the transistors. One unexpected advantage of this "reverse" configuration is that $V_{CE(sat)}$ will be significantly smaller than its classical counterpart, from 0.2/0.3V to a 1/2mV or less
 ### The NAND Gate
 [adaug momentan doar imagini stil galerie cu disclaimer de completare]
 
