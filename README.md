@@ -57,6 +57,7 @@ https://www.youtube.com/watch?v=i5K1sYbVUmo&ab_channel=electronzapdotcom
 I was trying to build a XOR gate but couldn't find many proper schematics and explanations. I chose to use the circuit presented in this hackaday post: https://cdn.hackaday.io/images/original/532881532876841662.gif. No matter how hard I tried I couldn't convince the circuit to obbey the truth table of the xor functin, but discovered that with a few tweaks here and there you could make an OR gate. The gates I built worked well enough and were integrated in bigger multigate cirucit without significant losses or errors.
 [imagine cu schema si cand functioneaza care cum].
 The main problem with my implementation, barring the obvious absence of a ground without connecting the state LED, is that the transistors don't really work as they're supposed to. $V_{E}$ will be slightly bigger than $V_{C}$ and the current will flow from the emitter to the collector. V_{E} < V_{B} and V_{C} < V_{B} so the transistor should be considered saturated. There shouldn't be any problems with this approach as all the possible voltages and currents are far too low to inflict any damage upon the transistors. One unexpected advantage of this "reverse" configuration is that $V_{CE(sat)}$ will be significantly smaller than its classical counterpart, from 0.2/0.3V to a 1/2mV or less
+https://electronics.stackexchange.com/questions/29756/bjt-in-reverse-active-mode-of-operation
 ### The NAND Gate
 [adaug momentan doar imagini stil galerie cu disclaimer de completare]
 
