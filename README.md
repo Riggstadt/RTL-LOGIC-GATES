@@ -23,8 +23,8 @@ There are a few characteristics that are of great interest to us, such as VCE(sa
 
 We will design a proof of concept circuit using the test values provided by the datasheet: VCE(sat,max) = 0.2V, Ib = 1mA, Ic = 10mA.
 
+![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/3a030cf6-fa8c-4fde-bda6-4fc3fd10de2e)
 
-[Cum scot valorile rezistentelor]
 $$V_{CC} = R_{B}\cdot I_{B}+V_{BE(sat)}\Longrightarrow R_{B}=\frac{5-0.65}{0.001}=4.35K\Omega$$
 $$V_{CC} = R_{C}\cdot I_{C}+V_{CE(sat)}\Longrightarrow \frac{5-0.2}{0.01}=480\Omega$$
 Note that $V_{CE(sat)}$ is the worst case value, we can have even lower saturation voltages whilst under 10mA collector current.
