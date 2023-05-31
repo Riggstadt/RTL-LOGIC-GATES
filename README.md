@@ -1,5 +1,7 @@
 # RTL-LOGIC-GATES
 Resistor-Transistor Logic based Logic Gates
+<br>
+<img src="https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/7183b134-2871-4428-9390-fb283c6794d8" width="512" height="237" />
 
 ### Description
 This repo covers some of the logic gates I designed and built out of discrete bipolar transistor
