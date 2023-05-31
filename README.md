@@ -23,14 +23,13 @@ There are a few characteristics that are of great interest to us, such as VCE(sa
 
 We will design a proof of concept circuit using the test values provided by the datasheet: VCE(sat,max) = 0.2V, Ib = 1mA, Ic = 10mA.
 
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/3a030cf6-fa8c-4fde-bda6-4fc3fd10de2e)
 
 $$V_{CC} = R_{B}\cdot I_{B}+V_{BE(sat)}\Longrightarrow R_{B}=\frac{5-0.65}{0.001}=4.35K\Omega$$
 $$V_{CC} = R_{C}\cdot I_{C}+V_{CE(sat)}\Longrightarrow \frac{5-0.2}{0.01}=480\Omega$$
 Note that $V_{CE(sat)}$ is the worst case value, we can have even lower saturation voltages whilst under 10mA collector current.
 
-![TESTCASE_INV_page-0001](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/03417f3d-e9bc-4cb9-a8d5-545ea77a8cde)
-![TESTCASE_INV_page-0001](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/0badeb5a-ee04-46f4-9467-623e68e4ad8c)
+![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/cc738bed-8c1f-4d4b-b39c-a31204025a64)
+
 
 
 
@@ -53,7 +52,8 @@ The inverters work well enough that they can be integrated into multigate circui
 
 ### The OR Gate
 I was trying to build an XOR gate but had a hard time finding appropriate schematics. I decided to experiment with this circuit from a hackaday post:
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/80ffdd7d-1a13-4f62-99d4-97ece58fd420)
+![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/c6c808a1-2631-44ab-bb30-d51598bb54e6)
+
 
 No matter how hard I tried I couldn't convince the circuit to obey the truth table of the xor function, but discovered that with a few tweaks you could make an OR gate. The gates I built worked well enough and were integrated in bigger multigate circuits without significant losses or errors.
 
@@ -61,7 +61,8 @@ The main problem with my implementation, barring the obvious absence of a ground
 A falstad simulation of my OR gate implementation.
 Do note that in the above presented simulation only one of the inputs is High, and as such only one transistor is in saturation. If both of the inputs are High, the circuit will act like a very low gain current amplifier, as the transistors would be in the Reverse Active Region.
 
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/ad4a857d-7ac0-4efb-a36b-d6a7b5d05399)
+![REVORGATE_page-0001](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/eb60184f-803d-45f3-958c-b32c2baaeb7e)
+
 
 |A_ON,B_ON|T1|T2|A_ON,B_OFF|T1|T2|
 |---|---|---|---|---|---|
@@ -73,7 +74,7 @@ Do note that in the above presented simulation only one of the inputs is High, a
 
 The alternative is to build a more classical OR logic gate. The gate is built out of two transistors connected in parallel with common collector and emitter currents. When one transistor is in cutoff, the other will conduct, insuring a voltage drop of about $V_{CC}-V_{BE}$ at the output of the gate.
 
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/2819f8ef-aefb-4fb6-8adb-fdfe6cf93dc6)
+![normalorgate_page-0001](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/95c2579a-0de8-415b-a0d2-004d624c2215)
 
 The classical approach has several key advantages:
 * The current doesn't change drastically when connecting both inputs to High 
@@ -82,13 +83,14 @@ The classical approach has several key advantages:
 
 OR gate(L) and Inverter(R, base and collector resistors present on the other side of the perfoboard)
 
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/d3c09238-5c46-48d8-9c1d-35c95a6fdf68)
+![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/5b58683a-2d8f-4dd5-b754-9d018e800d46)
 
 ### SR Latch 
 Will add more details to this section, at the moment only a showcase of the circuit:
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/6b545597-b3d8-4df1-b5c8-0094a221845d)
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/b9c1cc00-df62-4139-8dad-387b7822b458)
-![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/4d60eea9-5b7c-4b8f-ace5-c956bc4f5394)
+![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/eb3a23c2-464d-482d-90d0-805675fc6c4a)
+![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/954cb97f-6d02-4f8f-a51e-282af0e29af5)
+![image](https://github.com/Riggstadt/RTL-LOGIC-GATES/assets/127757267/ac137065-f500-44ae-ab52-38e582a4bfb5)
+
 
 
 
